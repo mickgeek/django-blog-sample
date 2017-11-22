@@ -1,0 +1,7 @@
+# python artifacts
+__pycache__/
+*.pyc
+
+# django collected static files
+staticfiles/
+media/

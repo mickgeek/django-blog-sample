@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Blog &middot; {{ block.super }}{% endblock %}
+
+{% block content-wrapper %}
+  <div class="row">
+    <div class="col-md-9">
+      <div class="blog">
+        {% block content %}{% endblock %}
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      {% block sidebar-right %}
+        <div class="portlet">
+          <h3>Browse</h3>
+
+          <ul>
+            <li><a href="{% url 'blog:post-archive' %}">Archive</a></li>
+          <ul>
+        </div>
+
+        {% if post_tags %}
+          <div class="portlet">
+            <h3>Tags</h3>
+
+            <ul>
+              {% for post_tag in post_tags %}
+                <li><a href="{% url 'blog:post-list-by-tag' post_tag.slug %}">{{ post_tag.name }}</a></li>
+              {% endfor %}
+            <ul>
+          </div>
+        {% endif %}
+      {% endblock %}
+    </div>
+  </div>
+{% endblock %}

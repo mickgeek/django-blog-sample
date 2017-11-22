@@ -1,0 +1,33 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Archive &middot; {{ block.super }}{% endblock %}
+
+{% block breadcrumbs %}
+  {{ block.super }}
+  <li><a href="{% url 'blog:post-list' %}">Blog</a></li>
+  <li class="active">Archive</li>
+{% endblock %}
+
+{% block content %}
+  <div class="post-archive">
+    <h1>Archive</h1>
+
+    {% for year, posts in years.items %}
+      <h3>{{ year }}</h3>
+
+      <ul>
+        {% for post in posts %}
+          <li>
+            <div class="date">
+              {{ post.published_date|date:"M d" }}
+            </div>
+
+            <a href="{% url 'blog:post-detail' slug=post.slug %}">{{ post.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% empty %}
+      <p>No posts yet.</p>
+    {% endfor %}
+  </div>
+{% endblock content %}

@@ -1,0 +1,22 @@
+{% if field.errors %}
+  <div class="has-error">
+{% endif %}
+  <label class="control-label" for="{{ form.name.auto_id }}">
+    {{ field.label }}
+    {% if field.field.required %}*{% endif %}
+  </label>
+
+  {{ field }}
+
+  {% if field.field.help_text %}
+    <span class="help-block">{{ field.field.help_text }}</span>
+  {% endif %}
+
+  {% if field.errors %}
+    {% for error in field.errors %}
+      <span class="help-block">{{ error }}</span>
+    {% endfor %}
+  {% endif %}
+{% if field.errors %}
+  </div>
+{% endif %}

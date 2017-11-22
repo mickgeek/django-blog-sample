@@ -1,0 +1,30 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}{{ post.title }} &middot; {{ block.super }}{% endblock %}
+
+{% block breadcrumbs %}
+  {{ block.super }}
+  <li><a href="{% url 'blog:post-list' %}">Blog</a></li>
+  <li class="active">{{ post.title }}</li>
+{% endblock %}
+
+{% block content %}
+  <div class="post">
+    <h1>{{ post.title }}</h1>
+
+    <div class="date">
+      <span class="glyphicon glyphicon-time"></span>
+      {{ post.published_date|date:"F j, Y" }}
+    </div>
+
+    <p>{{ post.body|safe }}</p>
+
+    {% if post.tags.all %}
+      <div class="tags">
+        {% for tag in post.tags.all %}
+          <a href="{% url 'blog:post-list-by-tag' tag.slug %}" class="btn btn-info btn-xs">{{ tag.name }}</a>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}

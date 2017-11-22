@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us &middot; {{ block.super }}{% endblock %}
+
+{% block breadcrumbs %}
+  {{ block.super }}
+  <li class="active">Contact Us</li>
+{% endblock %}
+
+{% block content %}
+  <div class="contact">
+    <h1>Contact Us</h1>
+
+    <p>Please fill out the following form to contact us. Thank you.</p>
+
+    <form method="post">
+      {% csrf_token %}
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            {% include 'includes/_field.html' with field=form.name %}
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            {% include 'includes/_field.html' with field=form.email %}
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            {% include 'includes/_field.html' with field=form.subject %}
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            {% include 'includes/_field.html' with field=form.message %}
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-default">Send</button>
+    </form>
+  </div>
+{% endblock %}

@@ -1,0 +1,7 @@
+Django
+django-ckeditor
+mysqlclient
+Pillow
+
+# debug
+django-debug-toolbar

@@ -1,0 +1,25 @@
+{% load core_extras %}
+
+{% if is_paginated %}
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+      <li><a href="{% url url_name url_args %}page{{ page_obj.previous_page_number }}">&lt;&lt;</a></li>
+    {% else %}
+      <li class="disabled"><span>&lt;&lt;</span></li>
+    {% endif %}
+
+    {% for i in page_obj|create_pagination_range:"10" %}
+      {% if page_obj.number == i %}
+        <li class="active"><span>{{ i }}</span></li>
+      {% else %}
+        <li><a href="{% url url_name url_args %}page{{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+      <li><a href="{% url url_name url_args %}page{{ page_obj.next_page_number }}">&gt;&gt;</a></li>
+    {% else %}
+      <li class="disabled"><span>&gt;&gt;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}

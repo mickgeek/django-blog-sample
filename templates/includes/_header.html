@@ -1,0 +1,27 @@
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-main-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{% url 'core:home' %}">Django Blog Sample</a>
+    </div>
+
+    <div id="navbar-main-collapse" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="{% if request.resolver_match.namespace == 'blog' %}active{% endif %}">
+          <a href="{% url 'blog:post-list' %}">Blog</a>
+        </li>
+        <li class="{% if request.path == '/about/' %}active{% endif %}">
+          <a href="/about/">About</a>
+        </li>
+        <li class="{% if request.resolver_match.namespace == 'contact' %}active{% endif %}">
+          <a href="{% url 'contact:contact' %}">Contact Us</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

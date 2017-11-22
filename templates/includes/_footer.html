@@ -1,0 +1,9 @@
+<footer>
+  <ul class="list-inline">
+    <li class="pull-right">&copy; Django Blog Sample, {% now "Y" %}</li>
+
+    <li><a href="{% url 'blog:post-list' %}">Blog</a></li>
+    <li><a href="/about/">About</a></li>
+    <li><a href="{% url 'contact:contact' %}">Contact Us</a></li>
+  </ul>
+</footer>
