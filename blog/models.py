@@ -40,9 +40,9 @@ class Post(models.Model):
     body = models.TextField()
     snippet = models.TextField()
     tags = models.ManyToManyField(Tag, blank=True)
-    status = models.SmallIntegerField(choices=STATUSES)
-    created_date = models.DateTimeField(default=timezone.now)
-    updated_date = models.DateTimeField(blank=True, null=True)
+    status = models.SmallIntegerField(choices=STATUSES, default='Draft')
+    created_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now=True)
     published_date = models.DateTimeField(blank=True, null=True)
 
     objects = PostQuerySet.as_manager()
